@@ -17,6 +17,7 @@ def convert_markdown_to_html(markdown_file, html_file):
             in_list = False
             list_type = None
             paragraph_lines = []
+            in_paragraph = False
 
             for line in md_file:
                 # Debug: Print the current line being processed
@@ -119,4 +120,3 @@ if __name__ == "__main__":
     
     # Successful execution
     sys.exit(0)
-
