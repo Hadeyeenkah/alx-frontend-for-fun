@@ -19,6 +19,9 @@ def convert_markdown_to_html(markdown_file, html_file):
             paragraph_lines = []
 
             for line in md_file:
+                # Debug: Print the current line being processed
+                print(f"Processing line: {line.strip()}")
+
                 # Check for heading levels
                 match_heading = re.match(r'^(#{1,6}) (.*)', line)
                 if match_heading:
@@ -53,56 +56,4 @@ def convert_markdown_to_html(markdown_file, html_file):
                 # Check for ordered list items
                 match_ordered_list = re.match(r'^\* (.*)', line)
                 if match_ordered_list:
-                    if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
-                        paragraph_lines = []
-                    if not in_list or list_type != 'ol':
-                        if in_list:
-                            html_file.write(f"</{list_type}>\n")
-                        html_file.write("<ol>\n")
-                        in_list = True
-                        list_type = 'ol'
-                    html_file.write(f"    <li>{match_ordered_list.group(1)}</li>\n")
-                    continue
-
-                # Handle blank lines and paragraphs
-                if line.strip() == "":
-                    if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
-                        paragraph_lines = []
-                    if in_list:
-                        html_file.write(f"</{list_type}>\n")
-                        in_list = False
-                    continue
-
-                # Collect paragraph lines
-                paragraph_lines.append(line.rstrip())
-
-            # Handle any remaining paragraph lines
-            if paragraph_lines:
-                paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
-
-            # Close any open list
-            if in_list:
-                html_file.write(f"</{list_type}>\n")
-
-if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
-        sys.exit(1)
-    
-    markdown_file = sys.argv[1]
-    html_file = sys.argv[2]
-    
-    if not os.path.isfile(markdown_file):
-        print(f"Missing {markdown_file}", file=sys.stderr)
-        sys.exit(1)
-    
-    # Convert markdown to HTML
-    convert_markdown_to_html(markdown_file, html_file)
-    
-    # Successful execution
-    sys.exit(0)
+                    if paragraph
