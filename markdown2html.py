@@ -9,11 +9,14 @@ import re
 
 def convert_markdown_to_html(markdown_file, html_file):
     """
-    Converts a Markdown file to an HTML file by parsing headings and unordered lists.
+    Converts a Markdown file to an HTML file by parsing headings, unordered lists,
+    and ordered lists.
     """
     with open(markdown_file, 'r') as md_file:
         with open(html_file, 'w') as html_file:
             in_list = False
+            list_type = None
+            
             for line in md_file:
                 # Check for heading levels
                 match_heading = re.match(r'^(#{1,6}) (.*)', line)
@@ -21,26 +24,45 @@ def convert_markdown_to_html(markdown_file, html_file):
                     heading_level = len(match_heading.group(1))
                     heading_text = match_heading.group(2)
                     if in_list:
-                        html_file.write("</ul>\n")
+                        html_file.write(f"</{list_type}>\n")
                         in_list = False
                     html_file.write(f"<h{heading_level}>{heading_text}</h{heading_level}>\n")
                     continue
 
                 # Check for unordered list items
-                match_list = re.match(r'^- (.*)', line)
-                if match_list:
-                    list_item = match_list.group(1)
-                    if not in_list:
+                match_unordered_list = re.match(r'^- (.*)', line)
+                if match_unordered_list:
+                    list_item = match_unordered_list.group(1)
+                    if not in_list or list_type != 'ul':
+                        if in_list:
+                            html_file.write(f"</{list_type}>\n")
                         html_file.write("<ul>\n")
                         in_list = True
+                        list_type = 'ul'
                     html_file.write(f"    <li>{list_item}</li>\n")
-                else:
-                    if in_list:
-                        html_file.write("</ul>\n")
-                        in_list = False
+                    continue
 
+                # Check for ordered list items
+                match_ordered_list = re.match(r'^\* (.*)', line)
+                if match_ordered_list:
+                    list_item = match_ordered_list.group(1)
+                    if not in_list or list_type != 'ol':
+                        if in_list:
+                            html_file.write(f"</{list_type}>\n")
+                        html_file.write("<ol>\n")
+                        in_list = True
+                        list_type = 'ol'
+                    html_file.write(f"    <li>{list_item}</li>\n")
+                    continue
+                
+                # Close any open list
+                if in_list:
+                    html_file.write(f"</{list_type}>\n")
+                    in_list = False
+
+            # Close any remaining open list
             if in_list:
-                html_file.write("</ul>\n")
+                html_file.write(f"</{list_type}>\n")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
@@ -59,4 +81,3 @@ if __name__ == "__main__":
     
     # Successful execution
     sys.exit(0)
-
