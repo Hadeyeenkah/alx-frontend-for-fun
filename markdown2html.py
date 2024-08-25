@@ -10,57 +10,82 @@ import re
 def convert_markdown_to_html(markdown_file, html_file):
     """
     Converts a Markdown file to an HTML file by parsing headings, unordered lists,
-    and ordered lists.
+    ordered lists, and paragraphs.
     """
     with open(markdown_file, 'r') as md_file:
         with open(html_file, 'w') as html_file:
             in_list = False
             list_type = None
-            
+            paragraph_lines = []
+
             for line in md_file:
                 # Check for heading levels
                 match_heading = re.match(r'^(#{1,6}) (.*)', line)
                 if match_heading:
-                    heading_level = len(match_heading.group(1))
-                    heading_text = match_heading.group(2)
                     if in_list:
                         html_file.write(f"</{list_type}>\n")
                         in_list = False
+                    if paragraph_lines:
+                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
+                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
+                        paragraph_lines = []
+                    heading_level = len(match_heading.group(1))
+                    heading_text = match_heading.group(2)
                     html_file.write(f"<h{heading_level}>{heading_text}</h{heading_level}>\n")
                     continue
 
                 # Check for unordered list items
                 match_unordered_list = re.match(r'^- (.*)', line)
                 if match_unordered_list:
-                    list_item = match_unordered_list.group(1)
+                    if paragraph_lines:
+                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
+                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
+                        paragraph_lines = []
                     if not in_list or list_type != 'ul':
                         if in_list:
                             html_file.write(f"</{list_type}>\n")
                         html_file.write("<ul>\n")
                         in_list = True
                         list_type = 'ul'
-                    html_file.write(f"    <li>{list_item}</li>\n")
+                    html_file.write(f"    <li>{match_unordered_list.group(1)}</li>\n")
                     continue
 
                 # Check for ordered list items
                 match_ordered_list = re.match(r'^\* (.*)', line)
                 if match_ordered_list:
-                    list_item = match_ordered_list.group(1)
+                    if paragraph_lines:
+                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
+                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
+                        paragraph_lines = []
                     if not in_list or list_type != 'ol':
                         if in_list:
                             html_file.write(f"</{list_type}>\n")
                         html_file.write("<ol>\n")
                         in_list = True
                         list_type = 'ol'
-                    html_file.write(f"    <li>{list_item}</li>\n")
+                    html_file.write(f"    <li>{match_ordered_list.group(1)}</li>\n")
                     continue
-                
-                # Close any open list
-                if in_list:
-                    html_file.write(f"</{list_type}>\n")
-                    in_list = False
 
-            # Close any remaining open list
+                # Handle blank lines and paragraphs
+                if line.strip() == "":
+                    if paragraph_lines:
+                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
+                        html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
+                        paragraph_lines = []
+                    if in_list:
+                        html_file.write(f"</{list_type}>\n")
+                        in_list = False
+                    continue
+
+                # Collect paragraph lines
+                paragraph_lines.append(line.rstrip())
+
+            # Handle any remaining paragraph lines
+            if paragraph_lines:
+                paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
+                html_file.write("<p>\n" + paragraph_text + "\n</p>\n")
+
+            # Close any open list
             if in_list:
                 html_file.write(f"</{list_type}>\n")
 
