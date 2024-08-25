@@ -1,8 +1,16 @@
-# My title
-- Hello
-- Bye
-
+<h1>My title</h1>
+<ul>
+<li>He<b>l</b>lo</li>
+<li>Bye</li>
+</ul>
+<p>
 Hello
-
-I'm a text
-with 2 lines
+</p>
+<p>
+I'm <b>a</b> text
+<br/>
+with <em>2 lines</em>
+</p>
+<p>
+<b>Or in bold</b>
+</p>
