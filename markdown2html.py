@@ -20,9 +20,6 @@ def convert_markdown_to_html(markdown_file, html_file):
             in_paragraph = False
 
             for line in md_file:
-                # Debug: Print the current line being processed
-                print(f"Processing line: {line.strip()}")
-
                 # Check for heading levels
                 match_heading = re.match(r'^(#{1,6}) (.*)', line)
                 if match_heading:
@@ -30,8 +27,7 @@ def convert_markdown_to_html(markdown_file, html_file):
                         html_file.write(f"</{list_type}>\n")
                         in_list = False
                     if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + convert_text(paragraph_text) + "\n</p>\n")
+                        html_file.write("<p>\n" + convert_paragraph(''.join(paragraph_lines)) + "\n</p>\n")
                         paragraph_lines = []
                     heading_level = len(match_heading.group(1))
                     heading_text = match_heading.group(2)
@@ -42,8 +38,7 @@ def convert_markdown_to_html(markdown_file, html_file):
                 match_unordered_list = re.match(r'^- (.*)', line)
                 if match_unordered_list:
                     if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + convert_text(paragraph_text) + "\n</p>\n")
+                        html_file.write("<p>\n" + convert_paragraph(''.join(paragraph_lines)) + "\n</p>\n")
                         paragraph_lines = []
                     if not in_list or list_type != 'ul':
                         if in_list:
@@ -58,8 +53,7 @@ def convert_markdown_to_html(markdown_file, html_file):
                 match_ordered_list = re.match(r'^\* (.*)', line)
                 if match_ordered_list:
                     if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + convert_text(paragraph_text) + "\n</p>\n")
+                        html_file.write("<p>\n" + convert_paragraph(''.join(paragraph_lines)) + "\n</p>\n")
                         paragraph_lines = []
                     if not in_list or list_type != 'ol':
                         if in_list:
@@ -73,8 +67,7 @@ def convert_markdown_to_html(markdown_file, html_file):
                 # Handle blank lines and paragraphs
                 if line.strip() == "":
                     if paragraph_lines:
-                        paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                        html_file.write("<p>\n" + convert_text(paragraph_text) + "\n</p>\n")
+                        html_file.write("<p>\n" + convert_paragraph(''.join(paragraph_lines)) + "\n</p>\n")
                         paragraph_lines = []
                     if in_list:
                         html_file.write(f"</{list_type}>\n")
@@ -86,8 +79,7 @@ def convert_markdown_to_html(markdown_file, html_file):
 
             # Handle any remaining paragraph lines
             if paragraph_lines:
-                paragraph_text = ''.join(paragraph_lines).replace('\n', '<br />\n')
-                html_file.write("<p>\n" + convert_text(paragraph_text) + "\n</p>\n")
+                html_file.write("<p>\n" + convert_paragraph(''.join(paragraph_lines)) + "\n</p>\n")
 
             # Close any open list
             if in_list:
@@ -102,6 +94,12 @@ def convert_text(text):
     # Convert emphasis (__) to <em> tags
     text = re.sub(r'__(.*?)__', r'<em>\1</em>', text)
     return text
+
+def convert_paragraph(text):
+    """
+    Converts Markdown paragraph syntax to HTML, replacing new lines with <br /> tags.
+    """
+    return text.replace('\n', '<br />\n')
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
