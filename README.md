@@ -1,10 +1,8 @@
 # My title
-- He**l**lo
+- Hello
 - Bye
 
 Hello
 
-I'm **a** text
-with __2 lines__
-
-**Or in bold**
+I'm a text
+with 2 lines
