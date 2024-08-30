@@ -101,8 +101,7 @@
   *, *:before, *:after {
     box-sizing: border-box;
   }
-
-
+  
   html {
   scroll-behavior: smooth;
   font-size: 62.5%;
@@ -180,19 +179,21 @@
   
   /* Grid
       ============================= */
-      .row {
-        display: flex;
-      }
+  
   ul.row {
     margin: 0;
     padding: 0;
     list-style: none;
   }
   
-  
+  .row::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
   
   [class*='col-'] {
-  
+    float: left;
     padding: 0.5rem;
   }
   
@@ -500,27 +501,3 @@
     font-size: 10rem;
     z-index: -1;
   }
-.section-services {
-  /* Styles for services section */
-}
-
-.section-works {
-  /* Styles for works section */
-}
-
-.section-about-us {
-  /* Styles for about us section */
-}
-
-.section-latest-news {
-  /* Styles for latest news section */
-}
-
-.section-testimonial {
-  /* Styles for testimonial section */
-}
-
-.section-contact {
-  /* Styles for contact section */
-}
-
