@@ -1,69 +1,59 @@
 #!/usr/bin/env python3
 """
-markdown2html.py: Converts a Markdown file to an HTML file.
+markdown2html.py - A simple markdown to HTML converter.
 """
 
 import sys
 import re
 
-def parse_markdown(markdown_file):
-    html_lines = []
-    with open(markdown_file, 'r') as file:
-        lines = file.readlines()
-
+def markdown_to_html(markdown_text):
+    html_output = []
     in_paragraph = False
-    paragraph_lines = []
 
-    for line in lines:
-        line = line.rstrip()  # Remove trailing whitespace
-        
-        if re.match(r'^# ', line):  # Heading level 1
-            html_lines.append(f"<h1>{line[2:]}</h1>")
-        elif re.match(r'^\- ', line):  # Unordered list item
-            if not html_lines or not html_lines[-1].startswith('<ul>'):
-                html_lines.append("<ul>")
-            html_lines.append(f"<li>{line[2:]}</li>")
-        elif line.strip() == "":  # Empty line
+    for line in markdown_text.splitlines():
+        stripped_line = line.strip()
+
+        if stripped_line == "":
             if in_paragraph:
-                if paragraph_lines:
-                    html_lines.append("<p>")
-                    html_lines.append("<br/>".join(paragraph_lines))
-                    html_lines.append("</p>")
+                html_output.append("</p>")
                 in_paragraph = False
-                paragraph_lines = []
-            elif html_lines and html_lines[-1] == "</ul>":
-                html_lines.pop()  # Remove the extra closing tag
-                html_lines.append("</ul>")
-        else:
-            if not in_paragraph:
-                in_paragraph = True
-            paragraph_lines.append(line)
+            continue
 
-    # If any paragraph is still open, close it
-    if in_paragraph and paragraph_lines:
-        html_lines.append("<p>")
-        html_lines.append("<br/>".join(paragraph_lines))
-        html_lines.append("</p>")
+        if not in_paragraph:
+            html_output.append("<p>")
+            in_paragraph = True
 
-    return html_lines
+        # Add <br/> for lines within the same paragraph
+        if len(html_output) > 0 and html_output[-1].endswith("</p>") is False and html_output[-1] != "<p>":
+            html_output[-1] += "<br/>"
 
-def convert_markdown_to_html(markdown_file, output_file):
-    html_lines = parse_markdown(markdown_file)
-    with open(output_file, 'w') as file:
-        for line in html_lines:
-            file.write(line + '\n')
+        html_output.append(stripped_line)
 
-if __name__ == "__main__":
+    if in_paragraph:
+        html_output.append("</p>")
+
+    return "\n".join(html_output)
+
+def main():
     if len(sys.argv) != 3:
-        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+        print("Usage: ./markdown2html.py <markdown file> <html file>")
         sys.exit(1)
 
     markdown_file = sys.argv[1]
-    output_file = sys.argv[2]
+    html_file = sys.argv[2]
 
     try:
-        convert_markdown_to_html(markdown_file, output_file)
+        with open(markdown_file, 'r') as md_file:
+            markdown_text = md_file.read()
+
+        html_content = markdown_to_html(markdown_text)
+
+        with open(html_file, 'w') as html_file:
+            html_file.write(html_content)
+
     except Exception as e:
-        sys.stderr.write(f"Error: {str(e)}\n")
+        print(f"Error: {e}")
         sys.exit(1)
 
+if __name__ == "__main__":
+    main()
