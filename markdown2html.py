@@ -6,6 +6,19 @@ markdown2html.py - A simple markdown to HTML converter.
 import sys
 import re
 
+def convert_bold_syntax(line):
+    """
+    Convert bold and emphasis syntax in a line.
+    **text** -> <b>text</b>
+    __text__ -> <em>text</em>
+    """
+    # Replace **text** with <b>text</b>
+    line = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', line)
+    # Replace __text__ with <em>text</em>
+    line = re.sub(r'__(.*?)__', r'<em>\1</em>', line)
+    
+    return line
+
 def markdown_to_html(markdown_text):
     html_output = []
     in_paragraph = False
@@ -22,6 +35,9 @@ def markdown_to_html(markdown_text):
         if not in_paragraph:
             html_output.append("<p>")
             in_paragraph = True
+
+        # Convert bold and emphasis syntax
+        stripped_line = convert_bold_syntax(stripped_line)
 
         # Add <br/> for lines within the same paragraph
         if len(html_output) > 0 and html_output[-1].endswith("</p>") is False and html_output[-1] != "<p>":
