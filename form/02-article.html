@@ -11,45 +11,63 @@
     <link rel="stylesheet" href="00-styles.css">
   </head>
   <body>
-    <!-- Form Section -->
-    <form action="#" method="POST">
+    <section class="comment-section">
+      <h2>Leave a Comment</h2>
 
-      <!-- First Fieldset for Personal Information -->
-      <fieldset>
-          <legend class="visually-hidden">Your personal information</legend>
+      <form action="#" method="POST">
 
-          <div class="form-group col-1-2">
-              <!-- Add input elements (e.g., name, email, etc.) -->
-          </div>
+          <!-- First Fieldset for Personal Information -->
+          <fieldset>
+              <!-- Legend with visually-hidden class -->
+              <legend class="visually-hidden">Your personal information</legend>
 
-          <div class="form-group col-1-2">
-              <!-- Add input elements (e.g., phone number, etc.) -->
-          </div>
+              <!-- First div with classes form-group and col-1-2 -->
+              <div class="form-group col-1-2">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+              </div>
 
-          <div class="form-group col-2-3">
-              <!-- Add input elements (e.g., address, etc.) -->
-          </div>
-      </fieldset>
+              <!-- Second div with classes form-group and col-1-2 -->
+              <div class="form-group col-1-2">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+              </div>
 
-      <!-- Second Fieldset for Comments -->
-      <fieldset>
-          <legend class="visually-hidden">Your comment</legend>
+              <!-- Third div with classes form-group and col-2-3 -->
+              <div class="form-group col-2-3">
+                  <label for="website">Website</label>
+                  <input type="url" id="website" name="website">
+              </div>
+          </fieldset>
 
-          <div class="form-group col-2-3">
-              <!-- Add comment input field -->
-          </div>
+          <!-- Second Fieldset for Comment -->
+          <fieldset>
+              <!-- Legend with visually-hidden class -->
+              <legend class="visually-hidden">Your comment</legend>
 
-          <div class="form-group col-2-3">
-              <!-- Add another input field (e.g., subject, etc.) -->
-          </div>
+              <!-- First div with classes form-group and col-2-3 -->
+              <div class="form-group col-2-3">
+                  <label for="comment">Comment</label>
+                  <textarea id="comment" name="comment" rows="5" required></textarea>
+              </div>
 
-          <div class="form-group">
-              <!-- Add submit button -->
-              <button type="submit">Submit</button>
-          </div>
-      </fieldset>
+              <!-- Second div with classes form-group and col-2-3 -->
+              <div class="form-group col-2-3">
+                  <label for="rating">Rating</label>
+                  <input type="number" id="rating" name="rating" min="1" max="5">
+              </div>
 
-  </form>
+              <!-- Third div with class form-group -->
+              <div class="form-group">
+                  <button type="submit">Submit Comment</button>
+              </div>
+
+          </fieldset>
+
+      </form>
+
+  </section>
+
     <!– Header –>
     <header class="header" data-section-theme="dark">
       <div class="container">
