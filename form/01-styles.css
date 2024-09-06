@@ -314,6 +314,9 @@ ul.row {
   line-height: var(--section-title-line-height);
   margin: var(--section-title-margin);
   color: var(--section-title-color);
+  font-variant: small-caps;
+
+
 }
 
 .section-tagline {
@@ -654,10 +657,7 @@ ul.row {
   padding-left: 7rem;
   }
   
-  .post-comments .section-title {
-    font-variant: small-caps;
-  }
-  
+
   /* Basic form
       ============================= */
   
