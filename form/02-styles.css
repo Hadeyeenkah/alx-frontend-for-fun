@@ -133,13 +133,14 @@
     background-color: var(--color-light-grey);
   }
   
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+  .button {
+    display: var(--button-display);
+    padding: var(--button-padding);
+    border: var(--button-border);
+    font-size: var(--button-font-size);
+    color: var(--button-color);
+    text-decoration: var(--button-text-decoration);
+  }
   
   .button:hover {
     color: var(--button-hover-color);
@@ -147,7 +148,6 @@
     background: var(--button-hover-background);
     transition-duration: var(--transition-duration);
     transition-property: color, background-color;
-    background-color: #0056b3;
   }
   
   /* Helpers
@@ -161,29 +161,6 @@
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
   }
-
-  /* Target all fieldsets */
-fieldset {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border: none;
-  padding: 0 0 2rem;
-}
-
-  /* Additional form styles */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-.form-group {
-  margin-bottom: 1rem;
   
   /*** 2. LAYOUT ***/
   
@@ -218,18 +195,9 @@ fieldset {
   }
   
   .col-1-2 {
-    width: calc((50% / 1rem);
-
+    width: calc((100% / 2) - 2rem);
   }
- 
-
-.col-2-3 {
-  width: calc(66.67% - 1rem);
-}
-
-textarea {
-  width: 100%;
- 
+  
   /* Navbar
       ============================= */
   
@@ -699,4 +667,54 @@ textarea {
       padding: 1rem 0;
       margin: 0;
     }
+    /* Target all fieldsets */
+fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: none;
+  padding: 0 0 2rem;
+}
+
+/* Additional form styles */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.col-1-2 {
+  width: calc(50% - 1rem);
+}
+
+.col-2-3 {
+  width: calc(66.67% - 1rem);
+}
+
+textarea {
+  width: 100%;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
     
+  
