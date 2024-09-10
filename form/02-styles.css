@@ -482,3 +482,24 @@ section.footer {
   top: -2rem;
   left: -2rem;
 }
+
+/* Form group styling (optional) */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Column widths */
+.col-1-2 {
+  width: calc(50% - 1rem);
+}
+
+.col-2-3 {
+  width: calc(66.67% - 1rem);
+}
+
+/* Form styling for responsiveness */
+@media screen and (max-width: 600px) {
+  .col-1-2, .col-2-3 {
+      width: 100%;
+  }
+}
