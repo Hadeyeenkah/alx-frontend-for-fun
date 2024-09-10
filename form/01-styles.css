@@ -625,7 +625,24 @@
     border: none;
     margin-bottom: 3rem;
   }
-  
+  .post-comments {
+    width: 80%;
+    margin: 10rem 0 0 auto;
+    padding-left: 7rem;
+}
+
+.post-comments .section-title {
+    font-variant: small-caps;
+}
+
+/* Basic form
+    ============================= */
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    margin: 0;
+}
   /* Tag list
       ============================= */
   
@@ -645,30 +662,3 @@
   .tag-list li:last-child::after {
     content: "";
   }
-  /*** FORM ***/
-/* Comment section
-    ============================= */
-    .post-comments {
-      width: 80%;
-      margin: 10rem 0 0 auto;
-      padding-left: 7rem;
-    }
-    .post-comments .section-title {
-      font-variant: small-caps;
-  }
-  /* Basic form
-   ============================= */
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-  margin: 0;
-}
-/* Target all labels */
-label {
-  cursor: pointer;
-  display: block;
-  white-space: nowrap;
-  font-size: 1.4rem;
-  padding: 0 0 0.5rem;
-}
