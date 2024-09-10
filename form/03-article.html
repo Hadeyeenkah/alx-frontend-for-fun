@@ -11,74 +11,6 @@
     <link rel="stylesheet" href="00-styles.css">
   </head>
   <body>
-    <!-- Other content goes here -->
-
-    <!-- Form Section -->
-    <section id="comments">
-      <h2>Leave a Comment</h2>
-      <form action="#" method="POST">
-
-     <!-- Form Section -->
-  <form action="#" method="post" class="form">
-    <!-- First fieldset -->
-    <fieldset>
-      <legend>Your Details</legend>
-      <div class="form-group col-1-2">
-        <label for="your-first-name">First Name</label>
-        <div class="form-field">
-          <span class="form-field-container">
-            <!-- You can place the input field or content here -->
-            <input type="text" id="your-first-name" name="first-name">
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group col-1-2">
-        <label for="your-last-name">Last Name</label>
-        <div class="form-field">
-          <span class="form-field-container">
-            <input type="text" id="your-last-name" name="last-name">
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group col-2-3">
-        <label for="your-email">Email</label>
-        <div class="form-field">
-          <span class="form-field-container">
-            <input type="email" id="your-email" name="email">
-          </span>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- Second fieldset -->
-    <fieldset>
-      <legend>Your Comment</legend>
-      <div class="form-group col-2-3">
-        <label for="your-title">Title</label>
-        <div class="form-field">
-          <span class="form-field-container">
-            <input type="text" id="your-title" name="title">
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group col-2-3">
-        <label for="your-comment">Comment</label>
-        <div class="form-field">
-          <span class="form-field-container">
-            <textarea id="your-comment" name="comment" rows="5"></textarea>
-          </span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="button button-primary">Post my comment</button>
-      </div>
-    </fieldset>
-  </form>
-
     <!– Header –>
     <header class="header" data-section-theme="dark">
       <div class="container">
@@ -159,6 +91,69 @@
               </ul>
               <p>Hoc etsi multimodis reprehendi potest, tamen accipio, quod dant. Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Nemo nostrum istius generis asotos iucunde putat vivere. Res enim se praeclare habebat, et quidem in utraque parte. Qui autem esse poteris, nisi te amor ipse ceperit? Ita fit cum gravior, tum etiam splendidior oratio. De vacuitate doloris eadem sententia erit. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.</p>
             </article>
+          </div>
+            <div class="post">
+              <!-- Post content -->
+          </div>
+      
+          <!-- New section for post comments -->
+          <section class="post-comments">
+              <header>
+                  <h2 class="section-title">Leave a comment</h2>
+                  <p>All fields are required.</p>
+              </header>
+      
+              <form action="#" method="post">
+                <fieldset>
+                  <legend class="visually-hidden">Your personal information</legend>
+                  
+                  <div class="form-group col-1-2">
+                    <label for="your-first-name">First Name</label>
+                    <div class="form-field">
+                        <span class="form-field-container"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group col-1-2">
+                    <label for="your-last-name">Last Name</label>
+                    <div class="form-field">
+                        <span class="form-field-container"></span>
+                    </div>
+                  </div>
+  
+                  <div class="form-group col-2-3">
+                    <label for="your-email">Email</label>
+                    <div class="form-field">
+                        <span class="form-field-container"></span>
+                    </div>
+                  </div>
+              </fieldset>
+  
+              <!-- Second Fieldset -->
+              <fieldset>
+                  <legend class="visually-hidden">Your comment</legend>
+  
+                  <div class="form-group col-2-3">
+                    <label for="your-title">Title</label>
+                    <div class="form-field">
+                        <span class="form-field-container"></span>
+                    </div>
+                  </div>
+  
+                  <div class="form-group col-2-3">
+                    <label for="your-comment">Comment</label>
+                    <div class="form-field">
+                        <span class="form-field-container"></span>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <button type="submit" class="button button-primary">Post my comment</button>
+                  </div>
+              </fieldset>
+          </form>
+      </section>
+
             <!– Aside section –>
             <aside class="post-aside">
               <div class="post-meta">
@@ -282,4 +277,3 @@
     </footer>
   </body>
 </html>
-

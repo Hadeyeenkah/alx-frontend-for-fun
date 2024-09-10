@@ -663,6 +663,21 @@ form {
       clip: rect(0, 0, 0, 0);
       border: 0;
   }
+  /* Form label styles
+    ============================= */
+label {
+  cursor: pointer;
+  display: block;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  padding: 0 0 0.5rem;
+}
+
+/* Form button hover styles */
+.button.button-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
   /* Tag list
       ============================= */
   
