@@ -11,44 +11,6 @@
     <link rel="stylesheet" href="00-styles.css">
   </head>
   <body>
-    <section id="comments">
-      <h2>Leave a Comment</h2>
-    <form action="#" method="POST">
-      <!-- First fieldset for personal information -->
-      <fieldset>
-          <legend class="visually-hidden">Your personal information</legend>
-          
-          <div class="form-group col-1-2">
-            <!-- First Content will be here -->
-        </div>
-
-        <div class="form-group col-1-2">
-            <!-- second Content will be here -->
-        </div>
-
-        <div class="form-group col-2-3">
-            <!-- Third Content will be here -->
-        </div>
-    </fieldset>
-
-    <fieldset>
-      <legend class="visually-hidden">Your comment</legend>
-
-                <div class="form-group col-2-3">
-                    <!-- First div content -->
-                </div>
-
-                <div class="form-group col-2-3">
-                    <!-- Second div content -->
-                </div>
-
-                <div class="form-group">
-                    <!-- Third div content (e.g., button) -->
-                </div>
-    </fieldset>
-
-  
-
     <!– Header –>
     <header class="header" data-section-theme="dark">
       <div class="container">
@@ -86,7 +48,6 @@
         </div>
       </div>
     </header>
-    
     <!– Main –>
     <main>
       <!– Hero section –>
@@ -130,18 +91,54 @@
               </ul>
               <p>Hoc etsi multimodis reprehendi potest, tamen accipio, quod dant. Atqui, inquam, Cato, si istud optinueris, traducas me ad te totum licebit. Nemo nostrum istius generis asotos iucunde putat vivere. Res enim se praeclare habebat, et quidem in utraque parte. Qui autem esse poteris, nisi te amor ipse ceperit? Ita fit cum gravior, tum etiam splendidior oratio. De vacuitate doloris eadem sententia erit. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.</p>
             </article>
-
-            !– Post Comments Section –>
-            <section class="post-comments">
+          </div>
+            <div class="post">
+              <!-- Post content -->
+          </div>
+      
+          <!-- New section for post comments -->
+          <section class="post-comments">
               <header>
-                <h2 class="section-title">Leave a comment</h2>
-                <p>All fields are required.</p>
+                  <h2 class="section-title">Leave a comment</h2>
+                  <p>All fields are required.</p>
               </header>
+      
               <form action="#" method="post">
-                <!-- Form fields will go here -->
-              </form>
-            </section>
-          
+                <fieldset>
+                  <legend class="visually-hidden">Your personal information</legend>
+                  
+                  <div class="form-group col-1-2">
+                      <!-- Input fields for first name will go here -->
+                  </div>
+                  
+                  <div class="form-group col-1-2">
+                      <!-- Input fields for last name will go here -->
+                  </div>
+  
+                  <div class="form-group col-2-3">
+                      <!-- Input fields for email will go here -->
+                  </div>
+              </fieldset>
+  
+              <!-- Second Fieldset -->
+              <fieldset>
+                  <legend class="visually-hidden">Your comment</legend>
+  
+                  <div class="form-group col-2-3">
+                      <!-- Input field for title will go here -->
+                  </div>
+  
+                  <div class="form-group col-2-3">
+                      <!-- Input field for comment will go here -->
+                  </div>
+  
+                  <div class="form-group">
+                      <!-- Submit button will go here -->
+                  </div>
+              </fieldset>
+          </form>
+      </section>
+
             <!– Aside section –>
             <aside class="post-aside">
               <div class="post-meta">

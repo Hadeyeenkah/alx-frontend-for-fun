@@ -625,7 +625,44 @@
     border: none;
     margin-bottom: 3rem;
   }
+  .post-comments {
+    width: 80%;
+    margin: 10rem 0 0 auto;
+    padding-left: 7rem;
+}
+
+.post-comments .section-title {
+    font-variant: small-caps;
+}
+
+/* Basic form
+    ============================= */
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    margin: 0;
+}
+/* Fieldset styles
+    ============================= */
+    fieldset {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border: none;
+      padding: 0 0 2rem;
+  }
   
+  .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+  }
   /* Tag list
       ============================= */
   
@@ -645,66 +682,3 @@
   .tag-list li:last-child::after {
     content: "";
   }
-  /*** FORM ***/
-/* Comment section
-    ============================= */
-    .post-comments {
-      width: 80%;
-      margin: 10rem 0 0 auto;
-      padding-left: 7rem;
-    }
-    .post-comments .section-title {
-      font-variant: small-caps;
-  }
-  /* Basic form
-   ============================= */
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-  margin: 0;
-}
-
-/* Target all labels */
-label {
-  cursor: pointer;
-  display: block;
-  white-space: nowrap;
-  font-size: 1.4rem;
-  padding: 0 0 0.5rem;
-}
-.form-group {
-  margin-bottom: 1rem;
-}
-
-/* Column widths */
-.col-1-2 {
-  width: calc(50% - 1rem);
-}
-
-.col-2-3 {
-  width: calc(66.67% - 1rem);
-}
-
-/* Form styling for responsiveness */
-@media screen and (max-width: 600px) {
-  .col-1-2, .col-2-3 {
-      width: 100%;
-  }
-fieldset {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border: none;
-  padding: 0 0 2rem;
-  
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
