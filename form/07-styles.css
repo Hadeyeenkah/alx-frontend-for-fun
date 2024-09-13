@@ -25,8 +25,7 @@
     --color-dark-grey: #333;
     --color-red: #cd3e65;
     --color-green: #08805b;
-  
-    --text-color: #555
+    --text-color: #000;
 
     /* New Color Validation Properties */
     --valid-color: var(--color-green);
