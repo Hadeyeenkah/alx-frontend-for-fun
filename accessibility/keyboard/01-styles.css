@@ -683,7 +683,10 @@
     bottom: 0;
     content: '';
   }
-  .card-work .card-title a:focus,
+
+  .card-work .card-title a:focus {
+    outline: 2px solid blue; /* Optional: Add a blue outline for better accessibility */
+  }
   .card-work:hover .card-title a {
     opacity: 1;
     height: 100%;
