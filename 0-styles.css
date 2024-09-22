@@ -1,0 +1,46 @@
+/* Base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 24px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Icon styles */
+.icon {
+    display: inline-block;
+    width: 128px; /* Width of each icon */
+    height: 128px; /* Height of each icon */
+    background-image: url('0-sprite.png'); /* Link to your sprite image */
+    background-repeat: no-repeat;
+    margin-left: 10px;
+}
+
+/* Positioning specific icons from the sprite */
+.i-html {
+    background-position: 0 0; /* Position for the HTML icon */
+}
+
+.i-css {
+    background-position: -128px 0; /* Adjust based on the sprite layout for the CSS icon */
+}
+
+.i-js {
+    background-position: -256px 0; /* Adjust based on the sprite layout for the JavaScript icon */
+}
+
